@@ -4,11 +4,11 @@ module.exports = app => {
 
     const Category = require('../models/Category')
 
-    router.post('/categories', async (req, res) => {
+    router.post('/', async (req, res) => {
         const model = await Category.create(req.body)
         res.send(model)
     })
-    router.get('/categories', async (req, res) => {
+    router.get('/', async (req, res) => {
         // 这里有点绕 , 我关联我自己.....
         const items = await Category.find().populate('parent').limit(10)
         console.log('/categories get items is ', items)
@@ -17,7 +17,7 @@ module.exports = app => {
     /**
      * @获取分类详情
      */
-    router.get('/categories/:id', async (req, res) => {
+    router.get('/:id', async (req, res) => {
         const data = await Category.findById(req.params.id)
         res.send(data)
     })
@@ -25,14 +25,14 @@ module.exports = app => {
     /**
      * @put接口
      */
-    router.put('/categories/:id', async (req, res) => {
+    router.put('/:id', async (req, res) => {
         const model = await Category.findByIdAndUpdate(req.params.id, req.body)
         res.send(model)
     })
     /**
      * @delete接口
      */
-    router.delete('/categories/:id', async (req, res) => {
+    router.delete('/:id', async (req, res) => {
         console.log('get delete function')
         const model = await Category.findByIdAndDelete(req.params.id)
         res.send({
@@ -40,5 +40,6 @@ module.exports = app => {
         })
     })
 
-    app.use('/admin/api', router)
+    // app.use('/admin/api', router)
+    app.use('/admin/api/rest/:resource', router)
 }
