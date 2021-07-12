@@ -1,0 +1,21 @@
+{
+  "name": "vue_code",
+  "version": "1.0.0",
+  "description": "npm uninstall -g @vue/cli",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joshua-leyer/vue_code.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joshua-leyer/vue_code/issues"
+  },
+  "homepage": "https://github.com/Joshua-leyer/vue_code#readme"
+}

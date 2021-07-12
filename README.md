@@ -4,8 +4,6 @@
 
 
 
-
-
 npm uninstall -g @vue/cli
 
 npm install -g @vue/cli@版本号
