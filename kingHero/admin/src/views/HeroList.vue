@@ -1,16 +1,20 @@
 <template>
     <div>
-        <h2>列表</h2>
+        <h2>英雄列表</h2>
         <el-table :data="items">
             <el-table-column prop="_id" label="id"></el-table-column>
-            <el-table-column prop="parent.name" label="上级分类"></el-table-column>
 
-            <el-table-column prop="name" label="分类名称"></el-table-column>
+            <el-table-column prop="name" label="英雄名称"></el-table-column>
+            <el-table-column prop="icon" label="头像">
+                <template slot-scope="scope">
+                    <img :src="scope.row.avatar"  style = "height: 3rem;" alt="">
+                </template>
+            </el-table-column>
 
             <el-table-column label="操作" width="180">
             <template slot-scope="scope">
                 <el-button type="primary" round size="mini"
-                @click="jump(scope.row._id)">编辑</el-button>
+                @click="$router.push(`/heros/edit/${scope.row._id}`)">编辑</el-button>
                 <el-button type="primary" round size="mini"
                 @click="remove(scope.row)">删除</el-button>
             </template> 
@@ -29,19 +33,10 @@
                 items: []
             }
         },
-        beforeRouteLeave(to, from, next) {
-          console.log('leave list ')
-          next()
-        },
         methods: {
-            jump(_id) {
-                console.log('enter jump')
-                this.$router.push(`/categories/edit/${_id}`)
-                console.log(`push了, /categories/edit/${_id}` )
-            },
             async fetch() {
-                const res = await this.$http.get('/rest/categories')
-                console.log('web get categories data is ', res)
+                const res = await this.$http.get('/rest/heros')
+                console.log('web get items data is ', res)
                 this.items = res.data
             },
             async remove(row) {
@@ -50,7 +45,7 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                     }).then(async () => {
-                        const res = await this.$http.delete(`/rest/categories/${row._id}`)
+                        const res = await this.$http.delete(`/rest/heros/${row._id}`)
                         // joshua一直想不明白,上面的是异步函数, 按照几乎我能找到的所有
                         // 教程文章来讲, 异步函数是为了解决阻塞问题, 
                         // 那请问,上面的 delete请求, 我发送过去, 这个下面的内容是执行还是不执行? 

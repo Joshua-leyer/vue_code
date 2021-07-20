@@ -35,14 +35,18 @@
                 parents: []
             }
         },
+        beforeRouteEnter(to, from, next) {
+          console.log('enter edit ')
+          next()
+        },
         methods: {
             async save() {
                 let res;
                 console.log('111')
                 if (this.id) {
-                    res = await this.$http.put(`/categories/${this.id}`, this.model)
+                    res = await this.$http.put(`/rest/categories/${this.id}`, this.model)
                 } else {
-                    res = await this.$http.post('/categories', this.model)
+                    res = await this.$http.post('/rest/categories', this.model)
                 }
 
                 this.$router.push('/categories/list')
@@ -53,17 +57,21 @@
                 })
             },
             async fetch() {
-                const res = await this.$http.get(`categories/${this.id}`)
+                const res = await this.$http.get(`/rest/categories/${this.id}`)
                 console.log('get res is ', res)
                 this.model = res.data
             },
             async fetchParent() {
-                const res = await this.$http.get('categories')
+                const res = await this.$http.get('/rest/categories')
                 this.parents = res.data
             }
         },
+        beforeCreate(){
+            console.log('edit vue beforeCreate')
+        },
         created() {
             //这个写法学习了.
+            console.log('web enter CategoryEdit vue')
             this.id && this.fetch()
             this.fetchParent()
         }

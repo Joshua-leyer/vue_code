@@ -8,6 +8,7 @@ const ports = 3020
 app.use( require('cors')() )
 app.use(express.json())
 
+app.use('/uploads', express.static(__dirname + '/uploads'))
 
 require('./db.js')(app)
 require('./routes/admin.js')(app)
