@@ -7,7 +7,7 @@ module.exports = app => {
     // const Category = require('../models/Category')
 
     /**
-     * @post表单提交
+     * @post 创建资源
      * axois post
      */
     router.post('/', async (req, res) => {
@@ -16,7 +16,9 @@ module.exports = app => {
         res.send(model)
     })
 
-
+    /**
+     * @资源列表
+     */
     router.get('/', async (req, res) => {
         console.log('enter / path')
         console.log('this path is ', __dirname)
@@ -44,16 +46,18 @@ module.exports = app => {
         res.send(data)
     })
 
+
     /**
-     * @put接口
+     * @put 修改更新资源
      */
     router.put('/:id', async (req, res) => {
         const model = await req.Model.findByIdAndUpdate(req.params.id, req.body)
         console.log('put接口接受到的数据是', req.body)
         res.send(model)
     })
+
     /**
-     * @delete接口
+     * @delete 删除资源
      */
     router.delete('/:id', async (req, res) => {
         console.log('get delete function')
@@ -87,4 +91,34 @@ module.exports = app => {
         file.url = `http://localhost:3020/uploads/${file.filename}`
         res.send(file)
     })
+
+
+
+    app.post('/admin/api/login', async (req, res) => {
+        const { username, password } = req.body
+        // 找
+        const AdminUser =  require(`../models/AdminUser`)
+        // 这里是个知识点. 前面为了直接就是不传输给前端查看到密码,索性就添加了select: false 字段. 
+        // 但是这里校验密码需要, 所以就多一个select()
+        const user = await AdminUser.findOne({username: username}).select('+password')
+        if (!user) {
+            return res.status(422).send({
+                message: '用户不存在'
+            })
+        }
+        // 校验密码
+        const isValid = require('bcrypt').compareSync(password, user.password)
+        if (!isValid) {
+            return res.status(422).send({
+                message: '密码错误'
+            })
+        }
+        // 返回token
+        const jwt = require('jsonwebtoken')
+        // 签名
+        const token = jwt.sign({ id: user._id }, app.get('secret'))
+        res.send({token})
+    })
+
 }
+

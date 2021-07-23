@@ -42,7 +42,6 @@ https://mongoosejs.com/docs/api.html#query_Query-setOptions
 这个方法只适用于find() Query查询方法.
 
 写了这些东西, 发现文档都是给会用的人看的, 也就是根本上就具备开发能力的人. 啥都不会的,看文档都是扯淡
+  
 
-const items = await req.Model.find().setOptions(queryOptions).limit(10)
-
-// 官网对setOptions 的描述真的感人. 草
+https://www.axios-http.cn/docs/interceptors

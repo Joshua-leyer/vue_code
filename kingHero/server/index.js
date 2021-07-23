@@ -10,6 +10,9 @@ app.use(express.json())
 
 app.use('/uploads', express.static(__dirname + '/uploads'))
 
+// express 设置一个 全局变量的用的
+app.set('secret', 'joshua')
+
 require('./db.js')(app)
 require('./routes/admin.js')(app)
 
