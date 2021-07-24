@@ -12,8 +12,9 @@
             <el-form-item label="图标">
                 <el-upload
                 class="avatar-uploader"
-
+                
                 :action="$http.defaults.baseURL + '/upload' "
+                :headers="getAuthHeaders()"
                 :show-file-list="false"
                 :on-success="afterUpload"
                 >
@@ -80,7 +81,8 @@
     }
 </script>
 
-<style >
+<style scoped>
+
 
   .avatar-uploader .el-upload {
     border: 1px dashed #d9d9d9;
@@ -95,14 +97,15 @@
   .avatar-uploader-icon {
     font-size: 28px;
     color: #8c939d;
-    width: 178px;
-    height: 178px;
-    line-height: 178px;
+    width: 5rem;
+    height: 5rem;
+    line-height: 5rem;
     text-align: center;
   }
   .avatar {
-    width: 178px;
-    height: 178px;
+    width: 5rem;
+    height: 5rem;
     display: block;
   }
+
 </style>

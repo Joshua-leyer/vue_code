@@ -1,4 +1,7 @@
 
+## 
+
+express^5.0.0 , express4 不支持捕获 async / await 的错误异常
 
 
 
@@ -45,3 +48,32 @@ https://mongoosejs.com/docs/api.html#query_Query-setOptions
   
 
 https://www.axios-http.cn/docs/interceptors
+
+
+
+### http-assert 包
+
+这里是捕获错误用的包, express ^4.17 版本不用用, 需要5版本 2021年7月24日 03:29:26 , joshua写的时候官网没有明确给出5版本,只是有个内侧版本. 所以, 姑且先不用这个了.
+
+不过思路用法都是一样的, 有空学习一下 原始的捕获错误的思路是什么. 
+
+
+
+
+##### bug Log
+
+express : ^4.17
+使用http-assert 提示关于捕获异常的错误 , 主要原因是express不能捕获promise的错误异常,似乎是这个原因.
+
+`
+UnhandledPromiseRejectionWarning: UnprocessableEntityError
+`
+在express github的官网, issus里面看到一个人评论, 他是使用express 5.0的测试版本没问题了. 操蛋. 不更新版本不知道有没有什么办法.
+```
+Hello @webshy I think this is more of a statement than a question. Please could you change the title and re-phrase a little bit so we can address this.
+
+Thank you very much for taking the time to read my question
+I used the Http-assert package and the express version was ^4.17.1.No exception was caught, error prompted.
+A solution has been found using express version 5.0.0-alpha.7
+```
+

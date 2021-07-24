@@ -14,6 +14,18 @@ import http from './http'
 Vue.prototype.$http = http
 
 
+// 混入  , !!! 一定要写在 new Vue前面
+Vue.mixin({
+  methods: {
+    getAuthHeaders() {
+      return {
+        // 没有就返回空值
+        Authorization: `Bearer  ${localStorage.token || ''}`
+      }
+    }
+  }
+})
+
 new Vue({
   router,
   render: h => h(App)

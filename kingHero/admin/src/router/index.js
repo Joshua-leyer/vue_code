@@ -26,7 +26,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/login', name: 'login', component: Login,
+    path: '/login', name: 'login', component: Login, meta: { isPulic: true }
   },
   {
     path: '/',
@@ -71,5 +71,16 @@ const routes = [
 const router = new VueRouter({
   routes
 })
+
+
+// 每次切换路由的时候执行的
+router.beforeEach((to, from, next) => {
+  if(!to.meta.isPulic && !localStorage.token ) {
+    return next('/login')
+  }
+  console.log(to)
+  next()
+})
+
 
 export default router
