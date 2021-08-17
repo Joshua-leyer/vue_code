@@ -1,7 +1,7 @@
 <template>
     <el-container style="height: 100vh; border: 1px solid #eee">
         <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-            <el-menu router :default-openeds="['3']" unique-opened :default-active="$route.path">
+            <el-menu router :default-openeds="['1']" unique-opened :default-active="this.$route.path"> 
 
             <el-submenu index="1">
                 <template slot="title"><i class="el-icon-message"></i>内容管理</template>
@@ -64,26 +64,27 @@
             </el-menu>
         </el-aside>
         
-        <el-container>
-            <el-header style="text-align: right; font-size: 12px">
-            <el-dropdown>
-                <i class="el-icon-setting" style="margin-right: 15px"></i>
-                <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>查看</el-dropdown-item>
-                <el-dropdown-item>新增</el-dropdown-item>
-                <el-dropdown-item>删除</el-dropdown-item>
-                </el-dropdown-menu>
-            </el-dropdown>
-            <span>王小虎</span>
-            </el-header>
-            
-            <el-main>
+          <el-container>
+              <el-header style="text-align: right; font-size: 12px">
+              <el-dropdown>
+                  <i class="el-icon-setting" style="margin-right: 15px"></i>
+                  <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item>查看</el-dropdown-item>
+                  <el-dropdown-item>新增</el-dropdown-item>
+                  <el-dropdown-item>删除</el-dropdown-item>
+                  </el-dropdown-menu>
+              </el-dropdown>
+              <span>王小虎</span>
+              </el-header>
+              
+              <el-main>
 
-                <router-view>
-                    
-                </router-view>
-            </el-main>
-        </el-container>
+                  <router-view :key="$router.path">
+                      
+                  </router-view>
+              </el-main>
+          </el-container>
+
         </el-container>
 </template>
 
@@ -112,11 +113,15 @@
       }
     },
     beforeEach(to,  from, next) {
-      console.log('beforeEach is ', to)
+      console.log('now $router path is ', this$route.path)
       next()
     },
     methods: {
-
+      
+    },
+    created() {
+      console.log('enter created function')
+      console.log('created function', this.$route)
     }
   };
 </script>

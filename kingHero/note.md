@@ -58,9 +58,15 @@ https://www.axios-http.cn/docs/interceptors
 不过思路用法都是一样的, 有空学习一下 原始的捕获错误的思路是什么. 
 
 
+### web/src/style.css 文件夹写法的学习
+
+类似一种bootstrap的类规范的实现. 利用 scss 预处理器
+
+## bug Log
 
 
-##### bug Log
+
+### express捕获promise的异常问题
 
 express : ^4.17
 使用http-assert 提示关于捕获异常的错误 , 主要原因是express不能捕获promise的错误异常,似乎是这个原因.
@@ -76,4 +82,30 @@ Thank you very much for taking the time to read my question
 I used the Http-assert package and the express version was ^4.17.1.No exception was caught, error prompted.
 A solution has been found using express version 5.0.0-alpha.7
 ```
+
+???? ==> 最后升级express 用的5.0 , 不知道如果是捕获的话,怎么搞
+
+
+### vue-swiper
+
+npm install swiper vue-awesome-swiper --save
+
+
+### 
+
+```html
+<router-link tag="div" to="/">首页</router-link>    
+```
+
+
+
+### vue-cli2 创建的项目 没有vue.config.js文件. 
+
+ESLint可以整个在package.json里面. 操蛋
+
+vue-cli 官网关于ESLint的描述真的少.
+
+还有文章说 是这个文件, eslintrc.js  奶奶的前端更新太快了.  根本没有
+
+https://segmentfault.com/a/1190000020005105
 

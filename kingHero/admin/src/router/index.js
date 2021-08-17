@@ -75,10 +75,13 @@ const router = new VueRouter({
 
 // 每次切换路由的时候执行的
 router.beforeEach((to, from, next) => {
+  console.log('===========================')
+
   if(!to.meta.isPulic && !localStorage.token ) {
     return next('/login')
   }
-  console.log(to)
+  console.log('enter path is', to.fullPath)
+  
   next()
 })
 

@@ -3,10 +3,22 @@
 
 
 
+卸载vue-cli (1.x 或 2.x)
 
-npm uninstall -g @vue/cli
+npm uninstall vue-cli -g
+
+-----
+
+卸载vue-cli（3.x或4.x）
+
+npm uninstall -g @vue/cli 
 
 npm install -g @vue/cli@版本号
+
+vue-cli 不同版本安装,卸载
+
+https://blog.csdn.net/weixin_43974265/article/details/109730540
+
 
 ## Vue
 

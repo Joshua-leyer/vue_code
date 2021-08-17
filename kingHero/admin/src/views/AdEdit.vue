@@ -62,6 +62,7 @@
         },
         beforeRouteEnter(to, from, next) {
           console.log('enter edit ')
+          console.log($route.path)  //获取不到 $route
           next()
         },
         methods: {
